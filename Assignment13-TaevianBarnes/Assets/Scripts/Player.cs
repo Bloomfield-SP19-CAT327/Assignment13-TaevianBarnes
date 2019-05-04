@@ -13,7 +13,10 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
-        transform.Translate(0, 1, 0);
+        if (isLocalPlayer && hasAuthority)
+        {
+            transform.Translate(0, 1, 0);
+        }
     }
 
     public override void OnStartClient()
@@ -26,6 +29,18 @@ public class Player : NetworkBehaviour
         if (isLocalPlayer && hasAuthority)
         {
             Movement();
+        }
+    }
+
+    void GetAuthority()
+    {
+        if (isServer)
+        {
+            RpcMovement();
+        }
+        else
+        {
+            CmdMovement();
         }
     }
 
@@ -62,5 +77,18 @@ public class Player : NetworkBehaviour
         {
             transform.Rotate(0, (Time.deltaTime * yRotate), 0);
         }
+
+    }
+
+    [ClientRpc]
+    void RpcMovement()
+    {
+        Movement();
+    }
+
+    [Command]
+    public void CmdMovement()
+    {
+        RpcMovement();
     }
 }
