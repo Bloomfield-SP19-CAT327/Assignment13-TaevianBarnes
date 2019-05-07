@@ -8,6 +8,8 @@ public class Player : NetworkBehaviour
     [SyncVar]
     public Color color;
 
+    public GameObject player;
+
     float moveSpeed = 3.0f;
     float yRotate = 50f;
 
@@ -85,6 +87,7 @@ public class Player : NetworkBehaviour
             transform.Rotate(0, (Time.deltaTime * yRotate), 0);
         }
 
+        
     }
 
     [ClientRpc]
