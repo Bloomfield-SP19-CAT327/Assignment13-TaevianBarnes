@@ -7,7 +7,7 @@ public class MyNetworkManager : NetworkManager
     {
         GameObject playerToSpawn = (GameObject)Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         playerToSpawn.GetComponent<Player>().color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-        playerToSpawn.GetComponent<Renderer>().material.color = playerToSpawn.GetComponent<Player>().color;
+        //playerToSpawn.GetComponent<Renderer>().material.color = playerToSpawn.GetComponent<Player>().color;
         NetworkServer.AddPlayerForConnection(conn, playerToSpawn, playerControllerId);
     }
 } 

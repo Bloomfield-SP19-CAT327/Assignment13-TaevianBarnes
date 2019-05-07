@@ -16,6 +16,13 @@ public class Player : NetworkBehaviour
         if (isLocalPlayer && hasAuthority)
         {
             transform.Translate(0, 1, 0);
+            //transform.position = new Vector3(0, 1, 0);
+        }
+        else
+        {
+            //transform.Translate()
+            transform.position = new Vector3(0, 1, 0);
+
         }
     }
 
